@@ -5,4 +5,4 @@ Havik code with updated library.
 
 Created by: Brayden Pineda
 
-Note: The code is rootamentary, it's intended purpose is for demonstration and functionality.
+Note: The code is rootamentary, it's intended purpose is for demonstration and functionality. The code is not tested and will be tested on the 18th to prove functionality (No referencing until debug).
