@@ -27,12 +27,13 @@ public class IntakeSubystem extends SubsystemBase {
     spoolMotorConfiguration = new SparkMaxConfig();
     spoolMotorConfiguration.smartCurrentLimit(40);
     spoolMotorConfiguration.idleMode(IdleMode.kBrake);
+    spoolMotorConfiguration.inverted(false);
     spoolMotorConfiguration.limitSwitch.forwardLimitSwitchEnabled(true).forwardLimitSwitchType(Type.kNormallyOpen);
     spoolMotor.configure(spoolMotorConfiguration, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
   }
   public void setIntakeState(IntakeState defaultIntakeState){
     spoolMotor.set(switch(defaultIntakeState){
-      case kIntaking -> 1.0;
+      case kIntaking -> 1;
       case kBrake -> 0.0;
     });
   }
