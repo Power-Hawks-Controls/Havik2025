@@ -23,16 +23,17 @@ public class ShootSubsystem extends SubsystemBase {
     kBrake
   }
   public ShootSubsystem(){
-    spoolMotor = new SparkMax(0, MotorType.kBrushless);
+    spoolMotor = new SparkMax(2, MotorType.kBrushless);
     spoolMotorConfiguration = new SparkMaxConfig();
     spoolMotorConfiguration.smartCurrentLimit(40);
     spoolMotorConfiguration.idleMode(IdleMode.kBrake);
+    spoolMotorConfiguration.inverted(false);
     spoolMotorConfiguration.limitSwitch.forwardLimitSwitchEnabled(true).forwardLimitSwitchType(Type.kNormallyOpen);
     spoolMotor.configure(spoolMotorConfiguration, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
   }
   public void setShooterState(ShootState defaultShootState){
     spoolMotor.set(switch(defaultShootState){
-      case kShooting -> 1.0;
+      case kShooting -> 1;
       case kBrake -> 0.0;
     });
   }
