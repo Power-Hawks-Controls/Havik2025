@@ -13,10 +13,15 @@ public class HavikCommands {
         this.m_IntakeSubystem = m_IntakeSubystem;
     }
     public Command onShoot(){
-        return Commands.startEnd(() -> m_ShootSubsystem.setShooterState(ShootState.kShooting), () -> m_ShootSubsystem.setShooterState(ShootState.kBrake), m_ShootSubsystem);
+        return Commands.runOnce(() -> m_ShootSubsystem.setShooterState(ShootState.kShooting));
     }
     public Command onIntake(){
-        return Commands.startEnd(() -> m_IntakeSubystem.setIntakeState(IntakeState.kIntaking), () -> m_IntakeSubystem.setIntakeState(IntakeState.kBrake), m_IntakeSubystem);
+        return Commands.runOnce(() -> m_IntakeSubystem.setIntakeState(IntakeState.kIntaking));
     }
-    
+    public Command onBrakeShooter(){
+        return Commands.runOnce(() -> m_ShootSubsystem.setShooterState(ShootState.kBrake));
+    }
+    public Command onBrakeIntake(){
+        return Commands.runOnce(() -> m_IntakeSubystem.setIntakeState(IntakeState.kBrake));
+    }
 }
